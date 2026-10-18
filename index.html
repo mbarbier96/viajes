@@ -78,7 +78,7 @@
     border-radius: 16px; background: var(--card); text-align: left; padding: 0;
     overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column;
   }
-  .gate .shot { display: block; height: min(46vh, 380px); background: var(--soft) center/cover no-repeat; }
+  .gate .shot { display: block; height: min(52vh, 460px); background: var(--soft) center 22% / cover no-repeat; }
   .gate .copy { padding: 20px 22px 24px; }
   .gate em { font-style: normal; color: var(--brand); font-size: 13px; font-weight: 600; }
   .gate h1 { font-size: clamp(32px, 4vw, 44px); line-height: 1.05; margin-top: 6px; }
@@ -296,22 +296,22 @@ const MONTHS = [
 ];
 const FAMILIES = {
   juarez: {
-    id: "juarez", names: "Mauricio y Ana", from: "Ciudad Juárez", code: "CJS",
+    id: "juarez", names: "Mauricio y Ana Paula", from: "Ciudad Juárez", code: "CJS",
     airline: "Viva Aerobus", size: "Familia de 4",
     kidsLabel: "1 niño de 2 años y 1 bebé de poco más de 1",
     kidsDetail: "Dos adultos, un niño de 2 años y un bebé de poco más de 1.",
     childAges: [2], infants: 1,
     aaChildren: 0, aaInfants: 0, vivaChildren: 1, vivaInfants: 1,
-    shot: "https://52efe9fcc4d4255a3e14-4b65870d4fb22f8d702ba22b9ca688b8.ssl.cf1.rackcdn.com/u/_resort/kid-friendly-resorts-in-cancun.jpg"
+    shot: "cancun-photos/mauricio-ana-paula.jpeg"
   },
   dfw: {
-    id: "dfw", names: "Carlos y Sofi", from: "Dallas", code: "DFW",
+    id: "dfw", names: "Carlos y Sofía", from: "Dallas", code: "DFW",
     airline: "American Airlines", size: "Familia de 3",
     kidsLabel: "1 niño de 1½ años",
     kidsDetail: "Dos adultos y un niño de 1½ años. American cuenta al menor de 2 como bebé en asiento. Si el hotel solo pide edad, se abre como 1 año.",
     childAges: [1], infants: 0,
     aaChildren: 0, aaInfants: 1, vivaChildren: 0, vivaInfants: 0,
-    shot: "https://playa-cms-assets.s3.amazonaws.com/media/Hyatt_Ziva_Cancun_Turquoize/Hyatt_Ziva_Cancun_General_Resort/Hyatt-Ziva-Cancun-Main-Pool-Family-11.Jpg"
+    shot: "cancun-photos/carlos-sofia.jpeg"
   }
 };
 
