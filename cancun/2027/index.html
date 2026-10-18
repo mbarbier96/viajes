@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cancún 2027 · hoteles en familia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: hsl(230 33% 98%);
+    --ink: hsl(222 47% 11%);
+    --muted: hsl(220 9% 46%);
+    --line: hsl(220 13% 91%);
+    --card: #ffffff;
+    --soft: hsl(228 30% 96%);
+    --brand: hsl(237 87% 59%);
+    --brand-soft: hsl(238 90% 96%);
+    --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.06);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; color: var(--ink); background: var(--bg);
+    font-family: Geist, Inter, sans-serif; line-height: 1.5;
+  }
+  button, a { font: inherit; color: inherit; }
+  button { cursor: pointer; }
+  h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; margin: 0; }
+  .wrap { width: min(1280px, calc(100% - 48px)); margin: 0 auto; }
+  .top {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand { display: flex; justify-content: space-between; align-items: center; gap: 16px; min-height: 56px; }
+  .word {
+    border: 0; background: none; padding: 0; font-size: 14px; font-weight: 600; letter-spacing: -0.02em;
+  }
+  #who {
+    color: var(--muted); font-size: 14px;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end;
+  }
+  .who-name { white-space: nowrap; }
+  .who-tools { display: flex; align-items: center; gap: 8px; }
+  .switch {
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line); background: var(--card); color: var(--ink);
+    border-radius: 8px; padding: 6px 10px; font-size: 13px; font-weight: 500;
+    box-shadow: 0 1px 2px rgba(10, 13, 13, 0.04);
+  }
+  .more { position: relative; }
+  .menu {
+    display: none; position: absolute; right: 0; top: calc(100% + 8px); width: min(320px, 86vw);
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    box-shadow: var(--shadow); padding: 8px; z-index: 30;
+  }
+  .menu.open { display: grid; gap: 2px; }
+  .menu button {
+    border: 0; background: transparent; text-align: left; padding: 10px 12px; border-radius: 10px;
+    font-size: 14px; font-weight: 500; color: var(--ink);
+  }
+  .menu button:hover, .menu button.on { background: var(--brand-soft); color: var(--brand); }
+  .menu em { font-style: normal; color: var(--muted); font-size: 12px; margin-left: 8px; }
+  .menu .sep { height: 1px; background: var(--line); margin: 6px 8px; }
+  .sheet { animation: rise 0.35s ease both; padding-bottom: 48px; }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .intro { padding: 36px 0 16px; max-width: 68ch; color: var(--muted); }
+  .intro h1 { color: var(--ink); font-size: clamp(32px, 4vw, 44px); line-height: 1.1; margin-bottom: 12px; }
+  .gate {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    padding: 28px 0 48px;
+  }
+  .gate button {
+    border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+    border-radius: 16px; background: var(--card); text-align: left; padding: 0;
+    overflow: hidden; box-shadow: var(--shadow); display: flex; flex-direction: column;
+  }
+  .gate .shot { display: block; height: min(52vh, 460px); background: var(--soft) center 22% / cover no-repeat; }
+  .gate .copy { padding: 20px 22px 24px; }
+  .gate em { font-style: normal; color: var(--brand); font-size: 13px; font-weight: 600; }
+  .gate h1 { font-size: clamp(32px, 4vw, 44px); line-height: 1.05; margin-top: 6px; }
+  .gate p { color: var(--muted); margin: 10px 0 0; }
+  .trips { display: grid; gap: 16px; }
+  .trip {
+    display: grid; grid-template-columns: 240px 1fr; gap: 20px; align-items: start;
+    background: var(--card); border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+    border-radius: 16px; padding: 10px; box-shadow: var(--shadow);
+  }
+  .trip img { width: 240px; height: 180px; object-fit: cover; display: block; border-radius: 12px; }
+  .rates { margin-top: 14px; }
+  .rate {
+    display: grid; grid-template-columns: 7.5rem 1fr; gap: 12px 16px; align-items: baseline;
+    padding: 8px 0; border-top: 1px solid var(--line);
+  }
+  .rate strong { font-size: 18px; letter-spacing: -0.03em; }
+  .rate span { color: var(--muted); font-size: 14px; }
+  .occ { display: block; margin-top: 8px; color: var(--muted); font-size: 12px; font-weight: 600; }
+  .why {
+    display: flex; flex-wrap: wrap; gap: 18px 28px; align-items: end;
+    margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line);
+  }
+  .scores { display: flex; gap: 18px; }
+  .score i { display: block; font-style: normal; font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.04em; text-transform: uppercase; }
+  .dots { display: flex; gap: 4px; margin-top: 8px; }
+  .dots span { width: 11px; height: 11px; border-radius: 50%; background: var(--soft); }
+  .dots span.on { background: var(--brand); }
+  .ages { display: grid; gap: 6px; width: 220px; }
+  .ages-track { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
+  .ages-track span {
+    text-align: center; font-size: 11px; font-weight: 600; padding: 7px 0; border-radius: 8px;
+    background: var(--soft); color: var(--muted);
+  }
+  .ages-track span.you { background: var(--brand); color: white; }
+  .ages-track span.club { background: var(--brand-soft); color: var(--brand); }
+  .ages small, .shape small { color: var(--muted); font-size: 12px; }
+  .shape { display: grid; gap: 4px; width: 168px; }
+  .spark { display: block; width: 100%; height: 36px; }
+  .spark polyline { fill: none; stroke: var(--brand); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .spark circle { fill: var(--brand); }
+  .mark {
+    display: inline-block; margin-top: 8px; font-size: 12px; font-weight: 600;
+    color: var(--ink); background: var(--soft); border-radius: 999px; padding: 4px 10px;
+  }
+  .kicker { color: var(--brand); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+  .kid {
+    display: inline-block; margin-top: 8px; color: var(--brand); font-size: 13px; font-weight: 600;
+    background: var(--brand-soft); border-radius: 999px; padding: 4px 10px;
+  }
+  .muted { color: var(--muted); font-size: 14px; margin: 4px 0 0; }
+  .price { font-size: 28px; font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; margin-top: 10px; }
+  .go, .ghost {
+    display: inline-flex; align-items: center; justify-content: center; text-decoration: none;
+    height: 40px; padding: 0 14px; font-size: 14px; font-weight: 500; border-radius: 8px; border: 0;
+  }
+  .go { background: var(--brand); color: white; cursor: pointer; }
+  .shot { border: 0; padding: 0; background: none; cursor: pointer; border-radius: 12px; }
+  .ghost { border: 1px solid var(--line); background: var(--card); color: var(--ink); }
+  .frame {
+    position: relative; margin-top: 20px; background: var(--soft);
+    aspect-ratio: 2.15 / 1; overflow: hidden; border-radius: 16px;
+    border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+    box-shadow: var(--shadow);
+  }
+  .frame .slide {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+    opacity: 0; transition: opacity 0.35s ease;
+  }
+  .frame .slide.on { opacity: 1; }
+  .nav {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+    width: 44px; height: 44px; border: 1px solid var(--line); border-radius: 999px;
+    background: white; color: var(--ink); font-size: 22px; line-height: 1;
+    box-shadow: var(--shadow);
+  }
+  .nav.prev { left: 14px; }
+  .nav.next { right: 14px; }
+  .count, .caption {
+    position: absolute; z-index: 3; background: white; color: var(--ink);
+    border-radius: 10px; padding: 6px 10px; font-size: 13px; box-shadow: var(--shadow);
+  }
+  .count { right: 16px; bottom: 14px; color: var(--muted); }
+  .caption { left: 16px; bottom: 14px; max-width: min(62ch, 70%); }
+  .strip { display: flex; gap: 8px; overflow-x: auto; padding: 10px 0 2px; }
+  .strip button {
+    border: 2px solid transparent; padding: 0; background: var(--soft); flex: none;
+    width: 92px; height: 64px; border-radius: 10px; overflow: hidden;
+  }
+  .strip button.on { border-color: var(--brand); }
+  .strip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .head {
+    background: var(--card); border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+    border-radius: 16px; padding: 20px; margin-top: 12px; box-shadow: var(--shadow);
+  }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .fact {
+    background: var(--soft); border-radius: 999px; padding: 6px 10px;
+    font-size: 13px; font-weight: 600;
+  }
+  .amenities { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .amenity {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--soft); border-radius: 999px; padding: 6px 10px; font-size: 13px; font-weight: 500;
+  }
+  .amenity svg { width: 16px; height: 16px; stroke: var(--brand); fill: none; stroke-width: 1.8; }
+  .buy { text-align: left; }
+  .stay { margin-top: 4px; font-weight: 600; }
+  .below { display: grid; gap: 12px; margin-top: 12px; }
+  .bookrow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .panel {
+    background: var(--card); border: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+    border-radius: 16px; padding: 16px 18px 18px; box-shadow: var(--shadow);
+  }
+  .months, .weeks { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .months button, .weeks button {
+    border: 1px solid var(--line); background: var(--card); color: var(--ink);
+    border-radius: 8px; padding: 8px 12px; font-weight: 500; font-size: 14px;
+  }
+  .months button { display: grid; gap: 2px; text-align: left; min-width: 7.5rem; }
+  .months button em { font-style: normal; font-size: 12px; color: var(--muted); font-weight: 600; }
+  .months button.on, .weeks button.on { background: var(--brand); color: white; border-color: var(--brand); }
+  .months button.on em { color: color-mix(in srgb, white 78%, transparent); }
+  .weeks { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); }
+  .weeks button { display: grid; gap: 2px; text-align: left; padding: 10px 12px; }
+  .weeks button strong { font-size: 16px; letter-spacing: -0.03em; }
+  .weeks button span { color: var(--muted); font-size: 13px; }
+  .weeks button.on span { color: color-mix(in srgb, white 82%, transparent); }
+  .weeks button.best:not(.on) { border-color: var(--brand); background: var(--brand-soft); }
+  .sort { margin-top: 14px; color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+  .cal { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-top: 12px; }
+  .cal i, .cal b { text-align: center; font-style: normal; font-size: 13px; padding: 8px 0; border-radius: 8px; }
+  .cal i { color: var(--muted); font-weight: 600; font-size: 11px; }
+  .cal b.sat { cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 0; }
+  .cal b.sat em { font-style: normal; font-size: 10px; font-weight: 600; color: var(--muted); }
+  .cal b.cheap { background: var(--brand-soft); color: var(--brand); }
+  .cal b.cheap em { color: var(--brand); }
+  .cal b.dear { background: var(--soft); }
+  .cal b.in { background: var(--brand-soft); color: var(--brand); }
+  .cal b.edge { background: var(--brand); color: white; font-weight: 600; }
+  .cal b.edge em { color: color-mix(in srgb, white 80%, transparent); }
+  .map { width: 100%; height: 280px; border: 0; border-radius: 12px; display: block; margin-top: 10px; }
+  .note { color: var(--muted); font-size: 13px; margin: 8px 0 0; }
+  footer { color: var(--muted); font-size: 13px; padding: 8px 0 36px; border-top: 1px solid var(--line); }
+  @media (max-width: 800px) {
+    .wrap { width: min(1280px, calc(100% - 32px)); }
+    .trip, .gate, .bookrow { grid-template-columns: 1fr; }
+    .trip img { width: 100%; height: 160px; }
+    .buy, .actions { text-align: left; justify-content: flex-start; }
+    .actions .go, .actions .ghost { width: 100%; }
+    .frame { aspect-ratio: 16 / 10; }
+    .caption { max-width: 78%; }
+    .brand {
+      display: grid; grid-template-columns: 1fr; gap: 10px;
+      align-items: stretch; min-height: 0; padding: 12px 0;
+    }
+    #who { display: grid; gap: 8px; justify-content: stretch; }
+    .who-name { white-space: normal; font-size: 13px; }
+    .who-tools { display: grid; grid-template-columns: 1fr 1fr; }
+    .switch { min-height: 44px; width: 100%; }
+    .more { width: 100%; }
+    .menu { left: 0; right: 0; width: 100%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sheet, .frame .slide { animation: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <div class="brand">
+      <button class="word" id="home" type="button">Cancún, verano 2027</button>
+      <span id="who"></span>
+    </div>
+  </div>
+</header>
+<main class="wrap" id="view"></main>
+<footer class="wrap" id="foot"></footer>
+<script>
+const money = (n) => n.toLocaleString("es-MX", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+const moneyExact = (n) => n.toLocaleString("es-MX", { style: "currency", currency: "USD" });
+const addDays = (day, n) => { const d = new Date(day + "T12:00:00"); d.setDate(d.getDate() + n); return d.toISOString().slice(0, 10); };
+const short = (day) => new Date(day + "T12:00:00").toLocaleDateString("es-MX", { day: "numeric", month: "short" });
+const mdy = (day) => { const d = new Date(day + "T12:00:00"); return `${String(d.getMonth()+1).padStart(2,"0")}/${String(d.getDate()).padStart(2,"0")}/${d.getFullYear()}`; };
+const stay = (day) => `${short(day)} – ${short(addDays(day, 7))}`;
+const aa = (a, b, p) => {
+  const slices = encodeURIComponent(JSON.stringify([
+    { orig: "DFW", origNearby: false, dest: "CUN", destNearby: false, date: a },
+    { orig: "CUN", origNearby: false, dest: "DFW", destNearby: false, date: b }
+  ]));
+  const pax = 2 + p.aaChildren + p.aaInfants;
+  return `https://www.aa.com/booking/search?locale=en_US&fareType=Lowest&pax=${pax}&adult=2&child=${p.aaChildren}&infantInSeat=${p.aaInfants}&type=RoundTrip&searchType=Revenue&cabin=&carriers=ALL&travelType=personal&slices=${slices}`;
+};
+const viva = (a, b, p) => `https://www.vivaaerobus.com/es-mx/book/options?itinerary=CJS-CUN-${a},CUN-CJS-${b}&adults=2&children=${p.vivaChildren}&infants=${p.vivaInfants}`;
+const party = () => FAMILIES[state.family];
+
+const I = {
+  pool: '<svg viewBox="0 0 24 24"><path d="M3 16c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2"/><path d="M7 12V7a2 2 0 0 1 4 0"/><path d="M8 7h2"/></svg>',
+  beach: '<svg viewBox="0 0 24 24"><path d="M4 18c2.5-3 5-3 8 0s5.5 3 8 0"/><path d="M12 18V6"/><path d="M12 6c3 1 5 4 5 7"/></svg>',
+  food: '<svg viewBox="0 0 24 24"><path d="M6 3v8a3 3 0 0 0 6 0V3"/><path d="M9 3v18"/><path d="M16 3v7h3V3"/><path d="M17.5 10V21"/></svg>',
+  kids: '<svg viewBox="0 0 24 24"><circle cx="8" cy="7" r="2.2"/><circle cx="16" cy="7" r="2.2"/><path d="M4.5 19c.6-2.6 2.4-4 5.5-4s4.9 1.4 5.5 4"/><path d="M13 15.2c.7-1.4 2-2.2 4-2.2 2.4 0 3.8 1.2 4.5 3.5"/></svg>',
+  spa: '<svg viewBox="0 0 24 24"><path d="M12 21s-6-3.4-6-8a6 6 0 0 1 12 0c0 4.6-6 8-6 8z"/><path d="M12 13V8"/><path d="M10 10h4"/></svg>',
+  bed: '<svg viewBox="0 0 24 24"><path d="M3 18V8"/><path d="M3 14h18v4"/><path d="M21 14V10a3 3 0 0 0-3-3H9"/><circle cx="8" cy="11" r="1.4"/></svg>',
+  wifi: '<svg viewBox="0 0 24 24"><path d="M5 10a10 10 0 0 1 14 0"/><path d="M8 13a6 6 0 0 1 8 0"/><path d="M12 17h.01"/></svg>',
+  show: '<svg viewBox="0 0 24 24"><path d="M4 16V8l8-3 8 3v8"/><path d="M8 16v2h8v-2"/><path d="M12 8v5"/></svg>'
+};
+
+const WEEKS = ["2027-07-03","2027-07-10","2027-07-17","2027-07-24","2027-07-31","2027-08-07","2027-08-14","2027-08-21","2027-08-28","2027-09-04","2027-09-11","2027-09-18"];
+const MONTHS = [
+  { id: "2027-07", name: "Julio", year: 2027, month: 6 },
+  { id: "2027-08", name: "Agosto", year: 2027, month: 7 },
+  { id: "2027-09", name: "Septiembre", year: 2027, month: 8 }
+];
+const FAMILIES = {
+  juarez: {
+    id: "juarez", names: "Mauricio y Ana Paula", from: "Ciudad Juárez", code: "CJS",
+    airline: "Viva Aerobus", size: "Familia de 4",
+    kidsLabel: "1 niño de 2 años y 1 bebé de poco más de 1",
+    kidsDetail: "Dos adultos, un niño de 2 años y un bebé de poco más de 1.",
+    childAges: [2], infants: 1,
+    aaChildren: 0, aaInfants: 0, vivaChildren: 1, vivaInfants: 1,
+    shot: "cancun-photos/mauricio-ana-paula.jpeg"
+  },
+  dfw: {
+    id: "dfw", names: "Carlos y Sofía", from: "Dallas", code: "DFW",
+    airline: "American Airlines", size: "Familia de 3",
+    kidsLabel: "1 niño de 1½ años",
+    kidsDetail: "Dos adultos y un niño de 1½ años. American cuenta al menor de 2 como bebé en asiento. Si el hotel solo pide edad, se abre como 1 año.",
+    childAges: [1], infants: 0,
+    aaChildren: 0, aaInfants: 1, vivaChildren: 0, vivaInfants: 0,
+    shot: "cancun-photos/carlos-sofia.jpeg"
+  }
+};
+
+function iberostar(code, a, b, p) {
+  const ages = p.childAges.concat(p.infants ? [1] : []);
+  const people = ages.concat([30, 30]);
+  const edad = people.map((age, i) => `edadpersona0_${i}=${age}`).join("&");
+  const stamp = (day) => `${day.slice(8, 10)}/${day.slice(5, 7)}/${day.slice(0, 4)}`;
+  return `https://booking.iberostar.com/Reservations/Availability?adultohab0=2&bebehab0=0&codiconc=${code}&conccodi=76&${edad}&fechafin=${encodeURIComponent(stamp(b))}&fechaini=${encodeURIComponent(stamp(a))}&idiocodi=2&idiomercodi=en&monecodi=USD&ninohab0=${ages.length}&numerohabitaciones=1&numeropersonas0=${people.length}&ok_promo=0&origen_soporte=IBE&search_origin=hotel`;
+}
+
+const HOTELS = [
+  {
+    id: "lindo", tier: "Excelente", name: "Iberostar Selection Paraíso Lindo", tab: "Paraíso Lindo", area: "Riviera Maya",
+    room: "Premium Tropical View", score: "—", reviews: "El Iberostar de referencia",
+    map: "Iberostar Selection Paraiso Lindo, Playa Paraiso, Riviera Maya",
+    address: "Playa Paraíso, a una hora del aeropuerto de Cancún",
+    rank: 2,
+    why: "The Iberostar you named as the level. Family, water park, Star Camp. Not Coral Cancún and not JOIA — those two are adults-only.",
+    pricedFor: "toddlers",
+    says: "This is the Iberostar in the quality bar. A family resort on the Riviera Maya, with a water park, not the hotel zone. Iberostar Selection Coral Cancún, next door in name only, is adults-only and is not this hotel.",
+    priceNote: "Best price, prepaid, on Iberostar’s site tonight for 2 adults and children ages 2 and 1. Taxes are included. Every week is a Premium Tropical View room. Pay at the hotel is higher and is not this number. The prepaid rate allows changes and is non-refundable.",
+    kids: { fit: "Bebés bienvenidos. Star Camp 0–3 con un adulto" },
+    amenities: [["pool","Parque acuático"],["beach","Playa"],["food","Todo incluido"],["kids","Star Camp"],["bed","Vista tropical"],["show","Shows"]],
+    images: [
+      { src: "https://apiimg.iberostar.com/uploads/image/88876/crops/16:9/1920/image.jpeg", cap: "Alberca con palmeras." },
+      { src: "https://apiimg.iberostar.com/uploads/image/61611/crops/16:9/1920/image.jpeg", cap: "Palmeras junto a la alberca." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88280/crops/16:9/1920/image.jpeg", cap: "El hotel y la alberca." },
+      { src: "https://apiimg.iberostar.com/uploads/image/62891/crops/16:9/1920/image.jpeg", cap: "Alberca." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88277/crops/16:9/1920/image.jpeg", cap: "Edificio entre árboles." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88811/crops/16:9/1920/image.jpeg", cap: "Área de juegos." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88281/crops/16:9/1920/image.jpeg", cap: "Actividad de Star Camp." },
+      { src: "https://apiimg.iberostar.com/uploads/image/58914/crops/16:9/1920/image.jpeg", cap: "Taller infantil." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88284/crops/16:9/1920/image.jpeg", cap: "Comedor." },
+      { src: "https://apiimg.iberostar.com/uploads/image/68280/crops/16:9/1920/image.jpeg", cap: "Corner Sports Bar." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88282/crops/16:9/1920/image.jpeg", cap: "Salón con escenario." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88805/crops/16:9/1920/image.jpeg", cap: "Recámara." },
+      { src: "https://apiimg.iberostar.com/uploads/image/59795/crops/16:9/1920/image.jpeg", cap: "Habitación." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88276/crops/16:9/1920/image.jpeg", cap: "Alberca de la habitación." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88071/crops/16:9/1920/image.jpeg", cap: "Cancha de tenis." }
+    ],
+    book: (a, b, p) => iberostar(78, a, b, p),
+    prices: { "2027-07-03":2389,"2027-07-10":2389,"2027-07-17":2389,"2027-07-24":2389,"2027-07-31":2389,"2027-08-07":2389,"2027-08-14":2389,"2027-08-21":2061,"2027-08-28":2007,"2027-09-04":2007,"2027-09-11":2007,"2027-09-18":2007 }
+  },
+  {
+    id: "maya", tier: "Muy bueno", name: "Iberostar Selection Paraíso Maya", tab: "Paraíso Maya", area: "Riviera Maya",
+    room: "Junior suite", score: "—", reviews: "Suites en el mismo complejo que Lindo",
+    rank: 5,
+    why: "Same Playa Paraíso campus as Lindo, all junior suites. You pay more for the room, not a different beach. JOIA next door is adults-only and is not this hotel.",
+    pricedFor: "toddlers",
+    map: "Iberostar Selection Paraiso Maya, Playa Paraiso, Riviera Maya",
+    address: "Playa Paraíso, el mismo complejo que Paraíso Lindo",
+    says: "All suites, in the same Playa Paraíso complex as Lindo. Iberostar’s own page calls this a family resort. JOIA Paraíso, in the same complex, is adults-only and is not this hotel.",
+    priceNote: "Best price, prepaid, on Iberostar’s site tonight for 2 adults and children ages 2 and 1. Taxes are included. Every week is a Junior Suite. Pay at the hotel is higher and is not this number.",
+    kids: { fit: "Bebés bienvenidos. Star Camp 0–3 con un adulto" },
+    amenities: [["bed","Junior suite"],["pool","Parque acuático"],["beach","Playa"],["food","Todo incluido"],["kids","Star Camp"],["show","Shows"]],
+    images: [
+      { src: "https://apiimg.iberostar.com/uploads/image/85070/crops/16:9/1920/image.jpg", cap: "Suites de Paraíso Maya." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88259/crops/16:9/1920/image.jpeg", cap: "Palmeras y edificio." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88260/crops/16:9/1920/image.jpeg", cap: "El hotel y la alberca." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88263/crops/16:9/1920/image.jpeg", cap: "Alberca con palmeras." },
+      { src: "https://apiimg.iberostar.com/uploads/image/59207/crops/16:9/1920/image.jpeg", cap: "Playa." },
+      { src: "https://apiimg.iberostar.com/uploads/image/80287/crops/16:9/1920/image.jpeg", cap: "Playa del hotel." },
+      { src: "https://apiimg.iberostar.com/uploads/image/87967/crops/16:9/1920/image.jpeg", cap: "Tobogán." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88807/crops/16:9/1920/image.jpeg", cap: "Área de juegos." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88264/crops/16:9/1920/image.jpeg", cap: "Actividad de Star Camp." },
+      { src: "https://apiimg.iberostar.com/uploads/image/59166/crops/16:9/1920/image.jpeg", cap: "Bar de alberca Las Olas." },
+      { src: "https://apiimg.iberostar.com/uploads/image/83116/crops/16:9/1920/image.jpeg", cap: "Alberca." },
+      { src: "https://apiimg.iberostar.com/uploads/image/83119/crops/16:9/1920/image.jpeg", cap: "Alberca con sombrilla." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88265/crops/16:9/1920/image.jpeg", cap: "Bañera de la suite." },
+      { src: "https://apiimg.iberostar.com/uploads/image/83854/crops/16:9/1920/image.jpeg", cap: "Recámara." },
+      { src: "https://apiimg.iberostar.com/uploads/image/88262/crops/16:9/1920/image.jpeg", cap: "Salón." }
+    ],
+    book: (a, b, p) => iberostar(76, a, b, p),
+    prices: { "2027-07-03":2834,"2027-07-10":2834,"2027-07-17":2834,"2027-07-24":2834,"2027-07-31":2834,"2027-08-07":2834,"2027-08-14":2834,"2027-08-21":2438,"2027-08-28":2373,"2027-09-04":2373,"2027-09-11":2373,"2027-09-18":2373 }
+  },
+  {
+    id: "hardrock", tier: "Bueno", name: "Hard Rock Hotel Cancún", area: "Zona Hotelera",
+    room: "Deluxe Double", score: "4.5", reviews: "20,478 reseñas",
+    map: "Hard Rock Hotel Cancun, Boulevard Kukulcan Km 14.5",
+    address: "Blvd. Kukulcán Km 14.5, Zona Hotelera",
+    says: "Guests like the beach, the shows, and the service. Plenty also say the rooms feel dated and the hotel is loud. Fun with kids. Not the quiet luxury stay.",
+    kids: { fit: "Bebés bienvenidos. Club desde los 4" },
+    amenities: [["show","Shows"],["beach","Playa y albercas"],["food","Todo incluido"],["kids","Kids club"],["bed","Habitaciones familiares"],["wifi","Wi-Fi"]],
+    images: [
+      { src: "https://hotel.hardrock.com/cancun/files/6134/roxity-kids-club-renovation-hard-rock-hotel-cancun.jpg", cap: "Roxity kids club." },
+      { src: "https://hotel.hardrock.com/cancun/files/6134/kids-club-renovation-hard-rock-hotel-cancun.jpg", cap: "Área de juegos del club." },
+      { src: "https://hotel.hardrock.com/cancun/files/6134/kids-party-3-hard-rock-hotel-cancun-paquete.jpg", cap: "Fiesta infantil." },
+      { src: "https://hotel.hardrock.com/cancun/files/6134/renovation-roxity-hard-rock-hotel-cancun.jpg", cap: "Roxity, después de la renovación." },
+      { src: "https://hotel.hardrock.com/cancun/files/6134/music-lab-stage-expericences-hard-rock-hotel-cancun.jpg", cap: "Escenario." },
+      { src: "https://hotel.hardrock.com/cancun/files/6134/hard-rock-hotel-cancun-lifestyle-pools.jpg", cap: "Albercas." },
+      { src: "https://hotel.hardrock.com/cancun/files/6134/hard-rock-hotel-cancun-lifestyle-splash-pool-bar.jpg", cap: "Alberca y bar." },
+      { src: "https://hotel.hardrock.com/cancun/files/6134/HRH_Cancun_Pool_Beach_013_6465.jpeg", cap: "Playa y alberca." },
+      { src: "https://hotel.hardrock.com/cancun/files/6134/renovation-bar-members-hard-rock-hotel-cancun.jpg", cap: "Bar." },
+      { src: "https://hotel.hardrock.com/cancun/files/6134/spa-hard-rock-hotel-cancun-renovation.jpg", cap: "Spa." },
+      { src: "https://hotel.hardrock.com/cancun/files/6134/Rock-Suite-hard-rcok-hotel-cancun-renovation.jpg", cap: "Rock Suite." },
+      { src: "https://hotel.hardrock.com/cancun/files/6134/30395769_ImageLargeWidth.JPG", cap: "Habitación." },
+      { src: "https://hotel.hardrock.com/cancun/files/6134/30401673_ImageLargeWidth.jpg", cap: "Sala de instrumentos." },
+      { src: "https://hotel.hardrock.com/cancun/files/6134/hard-rock-hotel-cancun-tours-cenote.jpg", cap: "Cenote." }
+    ],
+    book: (a, b, p) => {
+      const ages = p.childAges.concat(p.infants ? [1] : []);
+      return `https://hotel.reservations.hardrock.com/?adult=2&arrive=${a}&chain=13924&child=${ages.length}&childages=${ages.join("|")}&config=DFT&configcode=DFT&currency=USD&depart=${b}&hotel=59391&level=hotel&locale=en-US&rooms=1`;
+    },
+    prices: { "2027-07-03":3978,"2027-07-10":3978,"2027-07-17":3978,"2027-07-24":3978,"2027-07-31":4006,"2027-08-07":3978,"2027-08-14":3832,"2027-08-21":3438,"2027-08-28":3438,"2027-09-04":3438,"2027-09-11":3438,"2027-09-18":3438 }
+  },
+  {
+    id: "dreams", tier: "Muy bueno", name: "Dreams Playa Mujeres", area: "Playa Mujeres",
+    room: "Junior Suite, dos camas queen", score: "4.4", reviews: "9,425 reseñas",
+    map: "Dreams Playa Mujeres Golf and Spa Resort",
+    address: "Playa Mujeres, al norte de la Zona Hotelera",
+    says: "A calmer beach than the hotel zone, with suites, a lazy river, and a kids club. Guests praise the setting. A fair number say the rate feels high. On the October 17 search for ages 7 and 10, September 4 and 11 were not on sale.",
+    closed: ["2027-09-04", "2027-09-11"],
+    kids: { fit: "Bebés bienvenidos. Club desde los 3" },
+    amenities: [["beach","Playa y albercas"],["kids","Explorers Club"],["show","Core Zone para adolescentes"],["bed","Junior suites"],["food","Todo incluido"],["spa","Spa"]],
+    images: [
+      { src: "https://alg.widen.net/img/alg/pgn4jivkpq/1240px@1x/DREPM-EC-ExplorersClub-Outdoor-1A-CB.webp?q=80", cap: "Parque acuático." },
+      { src: "https://alg.widen.net/img/alg/8nivylt5v5/1240px@1x/DREPM-EC-ExplorersClub2-1A-CB.webp?q=80", cap: "Área de juegos." },
+      { src: "https://alg.widen.net/img/alg/yd0qpvspln/1240px@1x/DREPM-EXT-Family-LazyRiver-2-CB.webp?q=80", cap: "Río lento." },
+      { src: "https://alg.widen.net/img/alg/7iyhgmzpba/1240px@1x/DREPM-EXT-Family-Beach-1A-CB.webp?q=80", cap: "Familia en la playa." },
+      { src: "https://alg.widen.net/img/alg/2tn0pf8lzg/1240px@1x/DREPM-EXT-WaterSlide-1-CB.webp?q=80", cap: "Tobogán." },
+      { src: "https://alg.widen.net/img/alg/s1ycfwvwsv/1240px@1x/DREPM-EXT-GrottoPool-1-CB.webp?q=80", cap: "Alberca gruta." },
+      { src: "https://alg.widen.net/img/alg/qv1lwkz2ci/1240px@1x/DREPM-EXT-Aerial2-3A-CB-CB.webp?q=80", cap: "Alberca y playa." },
+      { src: "https://alg.widen.net/img/alg/cf6tyfdzpp/1240px@1x/DREPM-EXT-Pools-Aerial-1-RGB-CB.webp?q=80", cap: "Albercas." },
+      { src: "https://alg.widen.net/img/alg/mdwpfej7un/1240px@1x/DREPM-CZ-CoreZone-ClimbingWall-1A-RGB-CB.webp?q=80", cap: "Muro de escalada." },
+      { src: "https://alg.widen.net/img/alg/avc1ktgcko/1240px@1x/DREPM-CZ-CoreZone-1A-RGB-CB.webp?q=80", cap: "Core Zone, club de adolescentes." },
+      { src: "https://alg.widen.net/img/alg/jzjfdft6ui/1240px@1x/DREPM-BAR-Tides-1A-CB.webp?q=80", cap: "Tides, grill junto a la alberca." },
+      { src: "https://alg.widen.net/img/alg/6wfx8acjt3/1240px@1x/DREPM-BAR-SandBar-1A-CB.webp?q=80", cap: "Bar de playa." },
+      { src: "https://alg.widen.net/img/alg/gmunsm9rsl/1240px@1x/DREPM-BAR-Interlude-1A-RGB-CB.webp?q=80", cap: "Bar del lobby." },
+      { src: "https://alg.widen.net/img/alg/14nrprq2gi/1240px@1x/DREPM-RES-TresColores2021-1A-RGB-CB.webp?q=80", cap: "Restaurante Tres Colores." }
+    ],
+    book: (a, b, p) => `https://bookings.hyattinclusivecollection.com/bookcore/availability/drepm/${a}/${b}/2;${p.childAges.join(";")}/?rrc=1&adults=2&children-ages=${p.childAges.join(",")}&ninos=${p.childAges.length}&babies=${p.infants}`,
+    prices: { "2027-07-03":7146,"2027-07-10":6821,"2027-07-17":6346,"2027-07-24":6112,"2027-07-31":6132,"2027-08-07":6152,"2027-08-14":5320,"2027-08-21":5138,"2027-08-28":4922,"2027-09-04":null,"2027-09-11":null,"2027-09-18":4634 }
+  },
+  {
+    id: "finest", tier: "Excepcional", name: "Finest Playa Mujeres", area: "Playa Mujeres",
+    room: "Junior suite, vista spa o alberca", score: "4.6", reviews: "14,766 reseñas",
+    rank: 1,
+    why: "The Excellence group’s family hotel. Excellence itself is adults-only. This is the stay that matches the level you described.",
+    pricedFor: "toddlers",
+    priceNote: "Pay Now and Save More on Finest’s site for 2 adults and children ages 2 and 1. Both are under 4, so the engine prices them as babies. Taxes are included. Every week is a Junior Suite Spa or Pool View. The older $3,713 week was ages 7 and 10.",
+    map: "Finest Playa Mujeres, Cancun",
+    address: "Playa Mujeres, hotel familiar del grupo Excellence",
+    says: "This is the family resort from the Excellence group. Excellence itself does not allow kids. Guests talk up the food and the suites. It is the one that matches the level you described, at a better September price than Ziva.",
+    kids: { fit: "Bebés bienvenidos. Club 0–2 con un papá" },
+    amenities: [["bed","Suites familiares"],["pool","Varias albercas"],["kids","Kids club"],["spa","Spa"],["food","Todo incluido"],["beach","Playa"]],
+    images: [
+      { src: "https://52efe9fcc4d4255a3e14-4b65870d4fb22f8d702ba22b9ca688b8.ssl.cf1.rackcdn.com/u/FPM_Imagine_Kids_Club_LR.jpg", cap: "Imagine Kids Club." },
+      { src: "https://52efe9fcc4d4255a3e14-4b65870d4fb22f8d702ba22b9ca688b8.ssl.cf1.rackcdn.com/u/_resort/kid-friendly-resorts-in-cancun.jpg", cap: "Parque acuático." },
+      { src: "https://52efe9fcc4d4255a3e14-4b65870d4fb22f8d702ba22b9ca688b8.ssl.cf1.rackcdn.com/u/_familia/kid-friendly-resorts-finest-playa-mujeres-cancun.jpg", cap: "Área familiar." },
+      { src: "https://52efe9fcc4d4255a3e14-4b65870d4fb22f8d702ba22b9ca688b8.ssl.cf1.rackcdn.com/u/FPM_Imagine_Lounge_LR.jpg", cap: "Imagine Lounge." },
+      { src: "https://52efe9fcc4d4255a3e14-4b65870d4fb22f8d702ba22b9ca688b8.ssl.cf1.rackcdn.com/responsive/4:3/1600px/u/_resort/family-friendly-all-inclusive-resorts.jpg", cap: "Albercas familiares." },
+      { src: "https://52efe9fcc4d4255a3e14-4b65870d4fb22f8d702ba22b9ca688b8.ssl.cf1.rackcdn.com/u/_resort/all-inclusive-family-caribbean-resorts.jpg", cap: "Playa y albercas." },
+      { src: "https://52efe9fcc4d4255a3e14-4b65870d4fb22f8d702ba22b9ca688b8.ssl.cf1.rackcdn.com/u/FPM_Pool_Overview_LR.jpg", cap: "Alberca principal." },
+      { src: "https://52efe9fcc4d4255a3e14-4b65870d4fb22f8d702ba22b9ca688b8.ssl.cf1.rackcdn.com/u/FPM_Le_Petit_Plaisir_03_LR.jpg", cap: "Le Petit Plaisir." },
+      { src: "https://52efe9fcc4d4255a3e14-4b65870d4fb22f8d702ba22b9ca688b8.ssl.cf1.rackcdn.com/u/_resort/finest-playa-mujeres-cancun-all-inclusive-family-resorts.jpg", cap: "El hotel." },
+      { src: "https://52efe9fcc4d4255a3e14-4b65870d4fb22f8d702ba22b9ca688b8.ssl.cf1.rackcdn.com/u/FPM_Overview_Main_Area_1h_LR.jpg", cap: "Área principal." },
+      { src: "https://52efe9fcc4d4255a3e14-4b65870d4fb22f8d702ba22b9ca688b8.ssl.cf1.rackcdn.com/u/FPM_EC_Lounge_LR.jpg", cap: "Lounge." },
+      { src: "https://52efe9fcc4d4255a3e14-4b65870d4fb22f8d702ba22b9ca688b8.ssl.cf1.rackcdn.com/u/FPM_FC_Check_In_01_LR.jpg", cap: "Recepción." },
+      { src: "https://52efe9fcc4d4255a3e14-4b65870d4fb22f8d702ba22b9ca688b8.ssl.cf1.rackcdn.com/u/FPM_Room_Service_LR.jpg", cap: "Servicio a la habitación." },
+      { src: "https://52efe9fcc4d4255a3e14-4b65870d4fb22f8d702ba22b9ca688b8.ssl.cf1.rackcdn.com/u/_resort/finest-playa-mujeres-luxury-all-inclusive-resorts.jpg", cap: "Vista del resort." }
+    ],
+    book: (a, b, p) => {
+      const ages = p.childAges.concat(p.infants ? [1] : []);
+      return `https://booking.finestresorts.com/en/bookcore/availability/finestplaya/${a}/${b}/2;${ages.join(";")}/?adults=2&children-ages=${ages.join(",")}&ninos=${ages.length}&babies=0`;
+    },
+    prices: { "2027-07-03":3310,"2027-07-10":3317,"2027-07-17":3299,"2027-07-24":3292,"2027-07-31":3224,"2027-08-07":3206,"2027-08-14":2617,"2027-08-21":2612,"2027-08-28":2600,"2027-09-04":2547,"2027-09-11":2475,"2027-09-18":2496 }
+  },
+  {
+    id: "ziva", tier: "Increíble", name: "Hyatt Ziva Cancún", area: "Punta Cancún",
+    room: "Resort View Double", score: "4.6", reviews: "15,077 reseñas",
+    rank: 3,
+    why: "The family hotel people mean when they say the top of Cancún. You pay for the beach and the service. The club starts at 4.",
+    pricedFor: "toddlers",
+    priceNote: "Sun-Kissed Savings on Hyatt’s site, signed out, for 2 adults and children ages 2 and 1. Cheapest room is Resort View Double. July 17 offers the king with a sofa bed at the same total. $4,200 every week, and Hyatt shows no separate tax line. Member rates were not used. The older $5,846.40 was not this party’s public rate.",
+    map: "Hyatt Ziva Cancun",
+    address: "Punta Cancún, Zona Hotelera",
+    says: "The family resort people mean when they say the top of Cancún. Service, food, and the beach come up constantly. So do crowded pools and the rate. The price does not change from July to September.",
+    kids: { fit: "Bebés bienvenidos. Club desde los 4" },
+    amenities: [["food","Todo incluido"],["kids","KidZ Club"],["beach","Playa y albercas"],["spa","Spa"],["show","Shows"],["wifi","Wi-Fi"]],
+    images: [
+      { src: "https://playa-cms-assets.s3.amazonaws.com/media/Hyatt_Ziva_Cancun_Turquoize/Hyatt_Ziva_Cancun_General_Resort/Hyatt-Ziva-Cancun-Kidz-Club-Pool.Jpg", cap: "Alberca KidZ." },
+      { src: "https://playa-cms-assets.s3.amazonaws.com/media/Hyatt_ziva_cancun/hyatt-ziva-cancun-kids-activites-tents-3.jpg", cap: "Actividades infantiles." },
+      { src: "https://playa-cms-assets.s3.amazonaws.com/media/Hyatt_Ziva_Cancun_Turquoize/Hyatt_Ziva_Cancun_General_Resort/Hyatt-Ziva-Cancun-Main-Pool-Family-11.Jpg", cap: "Alberca familiar." },
+      { src: "https://playa-cms-assets.s3.amazonaws.com/media/Hyatt_ziva_cancun/ttd/hyatt-ziva-cancun-pool-cabana-family-experience-web.jpg", cap: "Cabaña de alberca." },
+      { src: "https://playa-cms-assets.s3.amazonaws.com/media/hero-hyatt-ziva-cancun-sips-and-dips-swimup-bar.jpg", cap: "Bar en la alberca." },
+      { src: "https://alg.widen.net/img/alg/yyqequhx97/1240px@1x/CANIF-Aerial-Shot-3.webp?q=80", cap: "Vista aérea." },
+      { src: "https://playa-cms-assets.s3.amazonaws.com/media/Hyatt_ziva_cancun/ttd/moods-games.jpg", cap: "@Moods, teens." },
+      { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Hyatt_Ziva_Hotel_at_night_in_Canc%C3%BAn_23_December_2016.jpeg/1280px-Hyatt_Ziva_Hotel_at_night_in_Canc%C3%BAn_23_December_2016.jpeg", cap: "El hotel de noche." }
+    ],
+    book: (a, b, p) => {
+      const ages = p.childAges.concat(p.infants ? [1] : []);
+      return `https://www.hyatt.com/shop/rooms/canif?checkinDate=${a}&checkoutDate=${b}&rooms=1&adults=2&kids=${ages.length}&${ages.map((age, i) => `childAge${i + 1}=${age}`).join("&")}&rate=Standard`;
+    },
+    prices: Object.fromEntries(WEEKS.map((w) => [w, 4200]))
+  },
+  {
+    id: "palladium", tier: "Bueno", name: "Grand Palladium Select Costa Mujeres", tab: "Palladium Costa Mujeres", area: "Costa Mujeres",
+    room: "Junior suite", score: "4.4", reviews: "14,542 reseñas",
+    rank: 4,
+    why: "The only hotel here with a staffed Baby Club for ages 1–3. Guest quality is a step below Finest, Ziva, and the Iberostars.",
+    pricedFor: "toddlers",
+    map: "Grand Palladium Select Costa Mujeres",
+    address: "Costa Mujeres, al norte de Cancún",
+    says: "The kid campus is why people book it. TripAdvisor’s own summary, Reddit in late 2025, and a 2026 family review do not agree on the rest. The beach and the clubs get praise. Bugs, damp rooms, restaurant reservations that never open, and thin service show up often enough that this is not in the same tier as Finest or Ziva.",
+    priceNote: "Flexible Rate – Pay Now on the Palladium site for 2 adults and children ages 2 and 1. The room card shows 2 adults and 2 babies. Taxes at 21% are in the total. The environmental sanitation fee, 33.94 MXN per person per night, and city tax at the hotel are extra. The Rewards unlock price is lower and is not this number.",
+    kids: { fit: "Bebés bienvenidos. Baby Club 1–3" },
+    amenities: [["kids","Baby Club 1–3"],["pool","Parque acuático"],["beach","Playa"],["food","Todo incluido"],["bed","Junior suites"],["show","Shows"]],
+    images: [
+      { src: "https://www.palladiumhotelgroup.com/content/dam/palladium/images/hoteles/mexico/costa-mujeres/experiencias/infantil/miniclub/Grand-Palladium-Costa-Mujeres-Baby-Club2.jpg", cap: "Baby Club." },
+      { src: "https://www.palladiumhotelgroup.com/content/dam/palladium/images/hoteles/mexico/costa-mujeres/experiencias/infantil/miniclub/Grand-Palladium-Costa-Mujeres-Baby-Club3.jpg", cap: "Sala del Baby Club." },
+      { src: "https://www.palladiumhotelgroup.com/content/dam/palladium/images/hoteles/mexico/costa-mujeres/experiencias/infantil/miniclub/Grand-Palladium-Costa-Mujeres-Mini-Club3.jpg", cap: "Mini Club." },
+      { src: "https://www.palladiumhotelgroup.com/content/dam/palladium/images/hoteles/mexico/costa-mujeres/experiencias/infantil/junior/Grand-Palladium-Costa-Mujeres-Junior-Club.jpg", cap: "Junior club." },
+      { src: "https://www.palladiumhotelgroup.com/content/dam/palladium/images/hoteles/mexico/costa-mujeres/hotel/piscinas/grand-palladium-costa-mujeres-resort-spa/Grand-Palladium-Costa-Mujeres-Resort-Spa_Vista-general-de-la-piscina-principal.jpg", cap: "Alberca principal." },
+      { src: "https://www.palladiumhotelgroup.com/content/dam/palladium/images/hoteles/mexico/costa-mujeres/hotel/fachadas/grand-palladium-costa-mujeres-resort-spa/grand-palladium-select-costa-mujeres_aerea_costa_mujeres.jpg", cap: "Vista aérea." },
+      { src: "https://www.palladiumhotelgroup.com/content/dam/palladium/images/hoteles/mexico/costa-mujeres/hotel/fachadas/grand-palladium-costa-mujeres-resort-spa/Grand-palladium-select-costa-mujeres-slider.jpg", cap: "Fachada." },
+      { src: "https://www.palladiumhotelgroup.com/content/dam/palladium/images/hoteles/mexico/costa-mujeres/gastronomia/portofino/Grand-Palladium-Costa-Mujeres-Resort-Spa-Restaurante-Portofino-9.jpg", cap: "Portofino." },
+      { src: "https://www.palladiumhotelgroup.com/content/dam/palladium/images/hoteles/mexico/costa-mujeres/spa/gp-select-costa-mujeres_spa.jpg", cap: "Spa." },
+      { src: "https://www.palladiumhotelgroup.com/content/dam/palladium/images/hoteles/mexico/costa-mujeres/habitaciones/grand-palladium-costa-mujeres-resort-spa/junior-suite-pool-access/grand-palladium-costa-mujeres-resort-spa-junior-suite-pool-access-1.jpg", cap: "Junior suite con acceso a la alberca." },
+      { src: "https://www.palladiumhotelgroup.com/content/dam/palladium/images/hoteles/mexico/costa-mujeres/habitaciones/grand-palladium-costa-mujeres-resort-spa/loft-suite-jacuzzi-terrace/GP-Costa-Mujeres-Loft-Suite-Jacuzzi-Terrace-vista.jpg", cap: "Loft suite con jacuzzi." },
+      { src: "https://www.palladiumhotelgroup.com/content/dam/palladium/images/hoteles/mexico/costa-mujeres/hotel/fachadas/grand-palladium-costa-mujeres-resort-spa/Grand-Palladium-Costa-Mujeres-Resort-Spa_Iglesia.jpg", cap: "Capilla." }
+    ],
+    book: (a, b, p) => {
+      const ages = p.childAges.concat(p.infants ? [1] : []);
+      return `https://bookings.palladiumhotelgroup.com/bookcore/availability/costamujeres/${a}/${b}/2;${ages.join(";")}/?rrc=1&adults=2&children-ages=${ages.join(",")}&ninos=${ages.length}&babies=0`;
+    },
+    prices: { "2027-07-03":3849.86,"2027-07-10":3499.86,"2027-07-17":3599.86,"2027-07-24":3529.88,"2027-07-31":3699.83,"2027-08-07":3609.84,"2027-08-14":3509.87,"2027-08-21":3049.88,"2027-08-28":3229.88,"2027-09-04":3269.86,"2027-09-11":3479.87,"2027-09-18":3289.88 }
+  },
+  {
+    id: "paradisus", tier: "Muy bueno", name: "Paradisus Cancún", area: "Zona Hotelera",
+    room: "Junior suite, vista atardecer", score: "4.5", reviews: "22,141 reseñas",
+    map: "Paradisus Cancun, Boulevard Kukulcan Km 16.5",
+    address: "Blvd. Kukulcán Km 16.5, Zona Hotelera",
+    says: "A large, clean hotel-zone resort. Recent TripAdvisor notes keep coming back to the rooms and the pools. Food is the argument: some tables are praised, older guests call the buffet average. The Reserve wing is adults-only and was not priced. The public non-member total is what is shown.",
+    kids: { fit: "Bebés bienvenidos. The Reserve es solo adultos" },
+    amenities: [["pool","Parque acuático"],["kids","Kidsdom"],["beach","Playa"],["food","Todo incluido"],["bed","Junior suites"],["show","Shows"]],
+    images: [
+      { src: "https://dam.melia.com/melia/file/BjEoV8Ah3LrrfGEvHYzC.jpg", cap: "Parque acuático." },
+      { src: "https://dam.melia.com/melia/accounts/f8/4000018/projects/127/assets/85/79434/d9c30bcf50d0edaafc97d8f4d914fdf6-1643729475.jpg", cap: "Alberca infantil." },
+      { src: "https://dam.melia.com/melia/file/PugebY1MKQLiwUjVhVcr.jpg", cap: "Playa." },
+      { src: "https://dam.melia.com/melia/file/edFoR3Wqu5EeYKJ5w69A.jpg", cap: "Vista aérea." },
+      { src: "https://dam.melia.com/melia/file/8VeFM4GG3svAv4r1D2Sc.jpg", cap: "Manualidades." },
+      { src: "https://dam.melia.com/melia/file/6TtL3pgYucLS7dy47mrh.jpg", cap: "Balcón y playa." },
+      { src: "https://dam.melia.com/melia/file/WANHTQPKwcjjQV4tdE9T.jpg", cap: "Habitación con jacuzzi." },
+      { src: "https://dam.melia.com/melia/file/sGNYJtEfXkUEmS3n4DKM.jpg", cap: "Recámara." },
+      { src: "https://dam.melia.com/melia/file/8Fo9sssmS1muQFAkBoCZ.jpg", cap: "Habitación con dos camas." },
+      { src: "https://dam.melia.com/melia/file/Bm52ZV8jpHAveXWidK5N.jpg", cap: "Sala." },
+      { src: "https://dam.melia.com/melia/file/UMH5HEZxn8MLabuQPorP.jpg", cap: "Balcón al mar." },
+      { src: "https://dam.melia.com/melia/file/EcPTuT84tpGzK5mrqS6F.jpg", cap: "El mar." }
+    ],
+    searchNote: "Meliá no toma el sábado del enlace. Abre su buscador; ahí pones fechas y edades.",
+    book: () => "https://www.melia.com/en/hotels/mexico/cancun/paradisus-cancun#booking-bar-destination",
+    prices: { "2027-07-03":4470.12,"2027-07-10":5340.07,"2027-07-17":5390.07,"2027-07-24":5390.07,"2027-07-31":5307.57,"2027-08-07":5293.82,"2027-08-14":4622.86,"2027-08-21":4004.14,"2027-08-28":4088.14,"2027-09-04":4160.14,"2027-09-11":4094.14,"2027-09-18":4139.14 }
+  },
+  {
+    id: "hilton", tier: "Muy bueno", name: "Hilton Cancún All-Inclusive", tab: "Hilton Cancún", area: "Sur de la Zona Hotelera",
+    room: "Vista atardecer, dos camas queen", score: "4.6", reviews: "5,717 reseñas",
+    map: "Hilton Cancun an All-Inclusive Resort",
+    address: "Zona Hotelera, detrás del manglar",
+    says: "Newer than Coral Beach, and TripAdvisor ranks the score with Ziva, but it is #83 in Cancún, not the famous point. Guests talk about the suites and the quiet site. The beach is a mangrove coast, not the hotel-zone strip. Only two weeks had a full public total opened: July 3 and September 11, both $3,948. The other Saturdays still open a search. The $557 figure on the room card is a Honors average, not the stay.",
+    kids: { fit: "Bebés bienvenidos. Club desde los 4" },
+    amenities: [["kids","Kids club 4–12"],["pool","Parque de agua"],["bed","Suites"],["food","Todo incluido"],["beach","Playa de manglar"],["spa","Spa"]],
+    images: [
+      { src: "https://assets.hiltonstatic.com/hilton-asset-cache/image/upload/c_fill,w_1200,q_70,f_auto/Imagery/Property%20Photography/Hilton%20Full%20Service/C/CUNQRHH/CUNQR_Splash_Pool_03___copia.jpg", cap: "Alberca splash." },
+      { src: "https://assets.hiltonstatic.com/hilton-asset-cache/image/upload/c_fill,w_1200,q_70,f_auto/Imagery/Lifestyle%20Photography/Hilton%20Hotels%20and%20Resorts/C/CUNQRHH/CUNQR_Waterpark_Family_01.jpg", cap: "Parque de agua." },
+      { src: "https://assets.hiltonstatic.com/hilton-asset-cache/image/upload/c_fill,w_1200,q_70,f_auto/Imagery/Lifestyle%20Photography/Hilton%20Hotels%20and%20Resorts/C/CUNQRHH/HHR_CANCUN_KIDSCLUB_SH0382.jpg", cap: "Kids club." },
+      { src: "https://assets.hiltonstatic.com/hilton-asset-cache/image/upload/c_fill,w_1200,q_70,f_auto/Imagery/Property%20Photography/Hilton%20Full%20Service/C/CUNQRHH/CUNQR_Family_Pool_01.jpg", cap: "Alberca familiar." },
+      { src: "https://assets.hiltonstatic.com/hilton-asset-cache/image/upload/c_fill,w_1200,q_70,f_auto/Imagery/Lifestyle%20Photography/Hilton%20Hotels%20and%20Resorts/C/CUNQRHH/HHR_CANCUN_POOL_SH0130.jpg", cap: "Alberca." },
+      { src: "https://assets.hiltonstatic.com/hilton-asset-cache/image/upload/c_fill,w_1200,q_70,f_auto/Imagery/Lifestyle%20Photography/Hilton%20Hotels%20and%20Resorts/C/CUNQRHH/HHR_CANCUN_BEACH_1364.jpg", cap: "Playa." }
+    ],
+    book: (a, b, p) => {
+      const ages = p.childAges.concat(p.infants ? [1] : []);
+      return `https://www.hilton.com/en/book/reservation/rooms/?ctyhocn=CUNQRHH&arrivalDate=${a}&departureDate=${b}&room1NumAdults=2&room1NumChildren=${ages.length}&room1ChildAges=${encodeURIComponent(ages.join(","))}&displayCurrency=USD`;
+    },
+    prices: { "2027-07-03":3948,"2027-07-10":null,"2027-07-17":null,"2027-07-24":null,"2027-07-31":null,"2027-08-07":null,"2027-08-14":null,"2027-08-21":null,"2027-08-28":null,"2027-09-04":null,"2027-09-11":3948,"2027-09-18":null }
+  },
+  {
+    id: "puertomorelos", tier: "Bueno", name: "Dreams Puerto Morelos", area: "Puerto Morelos",
+    room: "Junior suite, vista tropical", score: "—", reviews: "Antes Hyatt Ziva Riviera Cancún",
+    map: "Dreams Puerto Morelos Resort and Spa",
+    address: "Puerto Morelos, al sur del aeropuerto",
+    says: "This is the old Hyatt Ziva Riviera, not Ziva Cancún. A family who stayed in February 2026, with five kids including a six-month-old, liked the slides and the pools and said the buildings are tired: cracked tile, doors that do not lock, entertainment loud enough to hear in the room. The beach is not the blue hotel-zone beach. Only the September 11 total was opened, at $4,410. July 3 was not available for four guests on that search.",
+    closed: ["2027-07-03"],
+    kids: { fit: "Bebés bienvenidos. Club desde los 3" },
+    amenities: [["pool","Parque acuático"],["kids","Explorer’s Club 3–12"],["food","Todo incluido"],["bed","Junior suites"],["show","Shows"],["beach","Playa"]],
+    images: [
+      { src: "https://alg.widen.net/img/alg/xa2dszeeat/1240px@1x/CUNIF-EXT-Aerial-Waterslide-KM.webp?q=80", cap: "Toboganes." },
+      { src: "https://alg.widen.net/img/alg/6sqgivdrzh/1240px@1x/CUNIF-EXT-Playing-in-Pool-02-KM.webp?q=80", cap: "Familia en la alberca." },
+      { src: "https://alg.widen.net/img/alg/kbeperssn0/1240px@1x/CUNIF-EXT-Family-Infinity-Pool-KM.webp?q=80", cap: "Alberca frente al mar." },
+      { src: "https://alg.widen.net/img/alg/keopivcvb8/1240px@1x/CUNIF-EXT-Aerial-MainPool-2A-CB.webp?q=80", cap: "Vista aérea de la alberca." },
+      { src: "https://alg.widen.net/img/alg/28mlbgcnuh/1240px@1x/CUNIF-EXT-Family-Bali-Bed-01-KM.webp?q=80", cap: "Cabaña frente al mar." },
+      { src: "https://alg.widen.net/img/alg/gawxvdl1wd/1240px@1x/CUNIF-EXT-Family-Bali-Bed-02-KM.webp?q=80", cap: "Camas balinesas." },
+      { src: "https://alg.widen.net/img/alg/tvx1v4kabh/1240px@1x/CUNIF-EXT-Pool-01-KM.webp?q=80", cap: "Alberca y mar." },
+      { src: "https://alg.widen.net/img/alg/huq5zs3eni/1240px@1x/CUNIF-EXT-Main-P0041.webp?q=80", cap: "Alberca principal." },
+      { src: "https://alg.widen.net/img/alg/vtayhautoh/1240px@1x/CUNIF-EXT-PapayaSand-2A-CB.webp?q=80", cap: "Jardín y mar." },
+      { src: "https://alg.widen.net/img/alg/gisbgozwq8/1240px@1x/CUNIF-EXT-Slackline-KM.webp?q=80", cap: "Slackline." },
+      { src: "https://alg.widen.net/img/alg/fkxxft30oy/1240px@1x/CUNIF-BAR-SU-Delfin-P0176.webp?q=80", cap: "Bar en la alberca." },
+      { src: "https://alg.widen.net/img/alg/tuwx3mtup8/1240px@1x/CUNIF-BAR-Breeze-P0078.webp?q=80", cap: "Bar Breeze." }
+    ],
+    book: (a, b, p) => {
+      const ages = p.childAges.concat(p.infants ? [1] : []);
+      return `https://www.hyatt.com/shop/rooms/cunif?checkinDate=${a}&checkoutDate=${b}&rooms=1&adults=2&kids=${ages.length}&${ages.map((age, i) => `childAge${i + 1}=${age}`).join("&")}&rate=Standard`;
+    },
+    prices: { "2027-07-03":null,"2027-07-10":null,"2027-07-17":null,"2027-07-24":null,"2027-07-31":null,"2027-08-07":null,"2027-08-14":null,"2027-08-21":null,"2027-08-28":null,"2027-09-04":null,"2027-09-11":4410,"2027-09-18":null }
+  },
+  {
+    id: "moon", tier: "Muy bueno", name: "Moon Palace Cancún", tab: "Moon Palace", area: "Costa sur",
+    room: "Palace room", score: "4.5", reviews: "41,010 reseñas",
+    map: "Moon Palace Cancun",
+    address: "Sur de Cancún, a unos diez minutos del aeropuerto",
+    says: "The biggest family machine in Cancún: 4.5 from more than 41,000 TripAdvisor reviews, a Playroom, a FlowRider, and a golf course. Guests who like it talk about the kids program and the amount of stuff to do. Guests who don’t talk about the size, the walk, and a beach that is not hotel-zone blue. No stay total was opened on the Palace site, so every week here is a search, not a price.",
+    searchNote: "Palace pone el sábado y 2 adultos. Agrega a los niños en su formulario.",
+    kids: { fit: "Bebés bienvenidos. Playroom desde los 4" },
+    amenities: [["kids","Playroom"],["pool","Parque acuático y FlowRider"],["food","Varios restaurantes"],["bed","Habitaciones con jacuzzi"],["show","Shows"],["beach","Playa"]],
+    images: [
+      { src: "https://media.moonpalacecancun.com/kid_at_playroom_sunrise_moon_palace_cancun_24c2e95cbe_89fb5ca820.webp", cap: "Playroom." },
+      { src: "https://media.moonpalacecancun.com/pool_for_kids_moon_palace_cancun_7eacba469a_cdcfc63d6b.webp", cap: "Alberca infantil." },
+      { src: "https://media.moonpalacecancun.com/fun_family_pool_moon_palace_cancun_5627d6e7b7_66642b9998.webp", cap: "Alberca familiar." },
+      { src: "https://media.moonpalacecancun.com/fun_at_flowrider_moon_palace_cancun_b696ce2094_b3d91d7597.webp", cap: "FlowRider." },
+      { src: "https://media.moonpalacecancun.com/baby_and_family_moon_palace_cancun_997ebe03a7_f16ebc3795.webp", cap: "Familia con bebé." },
+      { src: "https://media.moonpalacecancun.com/family_fun_activities_moon_palace_cancun_b3de80ce8d_db7c41924a.webp", cap: "Actividades familiares." },
+      { src: "https://media.moonpalacecancun.com/deluxe_ocean_view_moon_palace_cancun_8d027d22a0_853af5df99.webp", cap: "Habitación vista al mar." },
+      { src: "https://media.moonpalacecancun.com/sunrise_area_moon_palace_cancun_6417283d9f_63202dac10.webp", cap: "Área Sunrise." },
+      { src: "https://media.moonpalacecancun.com/all_inclusive_vacations_moon_palace_cancun_85dc907f97.webp", cap: "El resort." },
+      { src: "https://media.moonpalacecancun.com/fresh_pasta_trattoria_restaurant_moon_palace_cancun_f7d7e54c37.webp", cap: "Trattoria." },
+      { src: "https://media.moonpalacecancun.com/interactive_asiatic_dining_moon_palace_cancun_17803d0769.webp", cap: "Restaurante asiático." },
+      { src: "https://media.moonpalacecancun.com/awe_dream_spa_moon_palace_cancun_3e981d3434.webp", cap: "Spa." },
+      { src: "https://media.moonpalacecancun.com/golf_riviera_maya_restaurant_moon_palace_cancun_0e37a84ea4.webp", cap: "Restaurante del golf." }
+    ],
+    book: (a, b) => `https://bookingscancunpr.moonpalace.com/rooms?skd-total-rooms=1&skd-checkin=${a}&skd-checkout=${b}&skd-language-code=en&adult_room1=2`,
+    prices: Object.fromEntries(WEEKS.map((w) => [w, null]))
+  }
+];
+
+const SIGNALS = {
+  finest: { match: 5, guests: 5, toddlers: 3, club: 3, mode: "parent", mark: "Familia Excellence" },
+  lindo: { match: 5, guests: 4, toddlers: 4, club: 0, mode: "parent", mark: "El Iberostar" },
+  ziva: { match: 4, guests: 5, toddlers: 2, club: 4, mode: "together", mark: "El mejor de Cancún" },
+  palladium: { match: 3, guests: 3, toddlers: 5, club: 1, mode: "drop", mark: "Club de bebés" },
+  maya: { match: 4, guests: 4, toddlers: 4, club: 0, mode: "parent", mark: "Mismo complejo" }
+};
+
+function priceRows(h) {
+  const groups = new Map();
+  for (const day of WEEKS) {
+    const n = h.prices[day];
+    if (typeof n !== "number") continue;
+    const key = String(n);
+    if (!groups.has(key)) groups.set(key, { price: n, days: [] });
+    groups.get(key).days.push(day);
+  }
+  return [...groups.values()].sort((a, b) => a.price - b.price);
+}
+function dateList(days) {
+  if (days.length >= 4 && days.every((d, i) => i === 0 || addDays(days[i - 1], 7) === d)) {
+    return `${stay(days[0]).split(" – ")[0]} al ${stay(days[days.length - 1]).split(" – ")[1]}`;
+  }
+  return days.map((d) => stay(d)).join(" · ");
+}
+function occLabel(h) {
+  return h.pricedFor === "toddlers"
+    ? "Tarifa para esta familia, en el sitio del hotel"
+    : "Buscado con 7 y 10 años, no es la tarifa de esta familia";
+}
+function meters(h) {
+  const s = SIGNALS[h.id];
+  if (!s) return "";
+  const dots = (n) => `<div class="dots">${[1, 2, 3, 4, 5].map((i) => `<span class="${i <= n ? "on" : ""}"></span>`).join("")}</div>`;
+  const score = (label, n) => `<div class="score"><i>${label}</i>${dots(n)}</div>`;
+  const you = party().id === "dfw" ? [1] : [1, 2];
+  const ages = [0, 1, 2, 3, 4, 5].map((a) => {
+    const cls = you.includes(a) ? "you" : a >= s.club ? "club" : "";
+    return `<span class="${cls}">${a === 0 ? "<1" : a}</span>`;
+  }).join("");
+  const clubNote = s.mode === "drop"
+    ? `Los dejan desde los ${s.club}`
+    : s.mode === "parent"
+      ? `Club desde ${s.club}; un papá se queda si son menores de 3`
+      : `Club desde ${s.club}; se quedan contigo`;
+  const vals = WEEKS.map((w) => h.prices[w]).filter((n) => typeof n === "number");
+  let shape = "";
+  if (vals.length > 1) {
+    const min = Math.min(...vals), max = Math.max(...vals);
+    const w = 220, hgt = 40, pad = 4;
+    const pts = vals.map((v, i) => {
+      const x = pad + (i / (vals.length - 1)) * (w - pad * 2);
+      const y = hgt - pad - ((v - min) / (max - min || 1)) * (hgt - pad * 2);
+      return `${x},${y}`;
+    });
+    const low = vals.indexOf(min);
+    const [lx, ly] = pts[low].split(",");
+    shape = `<div class="shape">
+      <svg class="spark" viewBox="0 0 ${w} ${hgt}" aria-hidden="true">
+        <polyline points="${pts.join(" ")}" />
+        <circle cx="${lx}" cy="${ly}" r="3.5" />
+      </svg>
+      <small>Jul → sep · más barato ${money(min)}</small>
+    </div>`;
+  }
+  return `<div class="why">
+    <div class="scores">${score("Encaje", s.match)}${score("Huéspedes", s.guests)}${score("Bebés", s.toddlers)}</div>
+    <div class="ages"><div class="ages-track">${ages}</div><small>${clubNote}</small></div>
+    ${shape}
+  </div>`;
+}
+
+const byId = Object.fromEntries(HOTELS.map((h) => [h.id, h]));
+const state = {
+  family: sessionStorage.getItem("cancun-family"),
+  tab: "overview", photo: 0, month: "2027-09", menu: false,
+  week: Object.fromEntries(HOTELS.map((h) => [h.id, cheapest(h)]))
+};
+let timer = 0;
+
+function cheapest(h) {
+  const open = WEEKS.filter((w) => typeof h.prices[w] === "number");
+  const pool = open.length ? open : WEEKS;
+  return pool.reduce((a, b) => (h.prices[a] ?? Infinity) <= (h.prices[b] ?? Infinity) ? a : b);
+}
+function rateLabel(h, day) {
+  if (typeof h.prices[day] === "number") return moneyExact(h.prices[day]);
+  if ((h.closed || []).includes(day)) return "Sin disponibilidad";
+  return "Sin precio";
+}
+function span(h) {
+  const nums = Object.values(h.prices).filter((n) => typeof n === "number");
+  if (!nums.length) return "Aún no hay total de estancia";
+  return `${money(Math.min(...nums))} – ${money(Math.max(...nums))}`;
+}
+function links(h, day) {
+  const p = party();
+  const out = addDays(day, 7);
+  const search = `<a class="go" href="${h.book(day, out, p)}" target="_blank" rel="noreferrer">Buscar en el hotel</a>`;
+  const flight = p.id === "juarez"
+    ? `<a class="ghost" href="${viva(day, out, p)}" target="_blank" rel="noreferrer">Viva · Juárez</a>`
+    : `<a class="ghost" href="${aa(day, out, p)}" target="_blank" rel="noreferrer">American · Dallas</a>`;
+  return search + flight;
+}
+
+function toTop() {
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+}
+
+function goTab(id) {
+  state.tab = id;
+  state.photo = 0;
+  state.menu = false;
+  if (id !== "overview") state.month = state.week[id].slice(0, 7);
+  render();
+  toTop();
+}
+
+function openHotel(id, day) {
+  state.tab = id;
+  state.photo = 0;
+  state.week[id] = day;
+  state.month = day.slice(0, 7);
+  render();
+  toTop();
+}
+
+function renderOverview() {
+  const p = party();
+  const ranked = HOTELS.filter((h) => h.rank).sort((a, b) => a.rank - b.rank);
+  document.getElementById("view").innerHTML = `
+    <section class="sheet">
+      <div class="intro">
+        <h1>Hoteles para ${p.names}.</h1>
+      </div>
+      <div class="trips">
+        ${ranked.map((h) => {
+          const rows = priceRows(h);
+          const cheap = cheapest(h);
+          const s = SIGNALS[h.id];
+          return `<article class="trip">
+            <button class="shot" type="button" data-jump="${h.id}|${cheap}"><img alt="${h.images[0].cap}" src="${h.images[0].src}" /></button>
+            <div>
+              <div class="kicker">${h.rank} · ${h.tier} · ${h.area}</div>
+              <h2>${h.name}</h2>
+              ${s ? `<span class="mark">${s.mark}</span>` : ""}
+              ${meters(h)}
+              <span class="occ">${occLabel(h)}</span>
+              <div class="rates">
+                ${rows.map((r) => `<div class="rate"><strong>${moneyExact(r.price)}</strong><span>${dateList(r.days)}</span></div>`).join("")}
+              </div>
+              <div class="actions"><button class="go" type="button" data-jump="${h.id}|${cheap}">Ver hotel</button></div>
+            </div>
+          </article>`;
+        }).join("")}
+      </div>
+    </section>`;
+  document.querySelectorAll("[data-jump]").forEach((btn) => btn.addEventListener("click", () => {
+    const [id, day] = btn.dataset.jump.split("|");
+    openHotel(id, day);
+  }));
+}
+
+function weekPrice(h, w) {
+  return typeof h.prices[w] === "number" ? h.prices[w] : Infinity;
+}
+function weeksByPrice(h, list = WEEKS) {
+  return [...list].sort((a, b) => weekPrice(h, a) - weekPrice(h, b) || a.localeCompare(b));
+}
+function monthLow(h, id) {
+  const nums = WEEKS.filter((w) => w.startsWith(id)).map((w) => h.prices[w]).filter((n) => typeof n === "number");
+  return nums.length ? Math.min(...nums) : null;
+}
+function priceBand(h, w) {
+  const priced = WEEKS.filter((d) => typeof h.prices[d] === "number").map((d) => h.prices[d]);
+  if (!priced.length || typeof h.prices[w] !== "number") return "";
+  const min = Math.min(...priced), max = Math.max(...priced);
+  if (max === min) return "cheap";
+  const t = (h.prices[w] - min) / (max - min);
+  return t <= 0.2 ? "cheap" : t >= 0.7 ? "dear" : "";
+}
+function calendar(h) {
+  const m = MONTHS.find((x) => x.id === state.month);
+  const day = state.week[h.id];
+  const out = addDays(day, 7);
+  const first = new Date(m.year, m.month, 1);
+  const count = new Date(m.year, m.month + 1, 0).getDate();
+  const heads = ["D","L","M","M","J","V","S"].map((d) => `<i>${d}</i>`).join("");
+  let cells = "";
+  for (let i = 0; i < first.getDay(); i++) cells += "<b></b>";
+  for (let n = 1; n <= count; n++) {
+    const iso = `${m.id}-${String(n).padStart(2, "0")}`;
+    const inRange = iso >= day && iso <= out && iso.slice(0, 7) === m.id;
+    const sat = WEEKS.includes(iso);
+    const cls = [sat ? "sat" : "", sat ? priceBand(h, iso) : "", inRange ? "in" : "", iso === day || iso === out ? "edge" : ""].filter(Boolean).join(" ");
+    const tag = sat && typeof h.prices[iso] === "number" ? `<em>${money(h.prices[iso])}</em>` : "";
+    cells += `<b class="${cls}" ${sat ? `data-week="${iso}"` : ""}>${n}${tag}</b>`;
+  }
+  return `<div class="cal">${heads}${cells}</div>`;
+}
+
+function renderHotel(h) {
+  const day = state.week[h.id];
+  const weeks = weeksByPrice(h, WEEKS.filter((w) => w.startsWith(state.month)));
+  const cheap = weeks.find((w) => typeof h.prices[w] === "number");
+  const facts = [
+    h.score && h.score !== "—" ? `${h.score} / 5` : "",
+    h.reviews,
+    h.room,
+    "7 noches"
+  ].filter(Boolean);
+  document.getElementById("view").innerHTML = `
+    <section class="sheet">
+      <div class="intro" style="padding:20px 0 0">
+        <button class="switch" id="back" type="button">Volver al ranking</button>
+      </div>
+      <div class="frame" id="frame">
+        ${h.images.map((img, i) => `<img class="slide ${i === state.photo ? "on" : ""}" alt="${img.cap}" src="${img.src}" />`).join("")}
+        <button class="nav prev" type="button" data-dir="-1" aria-label="Foto anterior">‹</button>
+        <button class="nav next" type="button" data-dir="1" aria-label="Foto siguiente">›</button>
+        <div class="caption" id="caption">${h.images[state.photo].cap}</div>
+        <div class="count" id="count">${state.photo + 1} / ${h.images.length}</div>
+      </div>
+      <div class="strip">
+        ${h.images.map((img, i) => `<button type="button" data-photo="${i}" class="${i === state.photo ? "on" : ""}"><img alt="" src="${img.src}" /></button>`).join("")}
+      </div>
+      <div class="head">
+        <div class="kicker">${h.tier} · ${h.area}</div>
+        <h1>${h.name}</h1>
+        <div class="facts">${facts.map((f) => `<span class="fact">${f}</span>`).join("")}</div>
+        <div class="amenities">${h.amenities.map(([k, label]) => `<div class="amenity">${I[k]}<span>${label}</span></div>`).join("")}</div>
+        ${h.kids?.fit ? `<div class="kid">${h.kids.fit}</div>` : ""}
+      </div>
+      <div class="below">
+        <div class="panel">
+          <div class="kicker">Elige las fechas</div>
+          <div class="months">${MONTHS.map((m) => {
+            const low = monthLow(h, m.id);
+            return `<button type="button" data-month="${m.id}" class="${m.id === state.month ? "on" : ""}">${m.name}${low != null ? `<em>desde ${money(low)}</em>` : "<em>Sin precio</em>"}</button>`;
+          }).join("")}</div>
+          <div class="sort">Más barato → más caro</div>
+          <div class="weeks">${weeks.map((w) => {
+            const n = h.prices[w];
+            const label = typeof n === "number" ? moneyExact(n) : rateLabel(h, w);
+            return `<button type="button" data-week="${w}" class="${w === day ? "on" : ""} ${w === cheap ? "best" : ""}"><strong>${label}</strong><span>${stay(w)}${w === cheap ? " · más barato" : ""}</span></button>`;
+          }).join("")}</div>
+          ${calendar(h)}
+          <p class="note">Solo se ven las semanas de este mes, de la más barata a la más cara. En el calendario, el azul más claro es la mejor tarifa del verano.</p>
+        </div>
+        <div class="bookrow">
+          <div class="panel buy">
+            <div class="kicker">Esta semana</div>
+            <div class="price">${rateLabel(h, day)}</div>
+            <div class="stay">${stay(day)}</div>
+            <div class="muted">${h.room} · 7 noches</div>
+            <div class="occ">${occLabel(h)}</div>
+            <div class="actions">${links(h, day)}</div>
+            ${h.searchNote ? `<p class="note">${h.searchNote}</p>` : ""}
+          </div>
+          <div class="panel">
+            <div class="kicker">Ubicación</div>
+            <div style="margin-top:6px;font-weight:600">${h.address}</div>
+            <iframe class="map" title="Mapa de ${h.name}" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=${encodeURIComponent(h.map)}&z=14&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>`;
+
+  document.getElementById("back").addEventListener("click", () => goTab("overview"));
+  document.querySelectorAll("[data-month]").forEach((btn) => btn.addEventListener("click", () => {
+    state.month = btn.dataset.month;
+    if (!state.week[h.id].startsWith(state.month)) {
+      const next = weeksByPrice(h, WEEKS.filter((w) => w.startsWith(state.month)))[0];
+      if (next) state.week[h.id] = next;
+    }
+    renderHotel(h);
+  }));
+  document.querySelectorAll("[data-week]").forEach((btn) => btn.addEventListener("click", () => {
+    state.week[h.id] = btn.dataset.week;
+    state.month = btn.dataset.week.slice(0, 7);
+    renderHotel(h);
+  }));
+  const show = (n) => {
+    state.photo = (n + h.images.length) % h.images.length;
+    document.querySelectorAll(".frame .slide").forEach((img, i) => img.classList.toggle("on", i === state.photo));
+    document.querySelectorAll(".strip button").forEach((btn, i) => btn.classList.toggle("on", i === state.photo));
+    const count = document.getElementById("count");
+    if (count) count.textContent = `${state.photo + 1} / ${h.images.length}`;
+    const caption = document.getElementById("caption");
+    if (caption) caption.textContent = h.images[state.photo].cap;
+    const active = document.querySelector(".strip button.on");
+    if (active) active.scrollIntoView({ block: "nearest", inline: "nearest" });
+  };
+  const arm = () => {
+    clearInterval(timer);
+    timer = setInterval(() => { if (!document.hidden) show(state.photo + 1); }, 5000);
+  };
+  document.querySelectorAll("[data-dir]").forEach((btn) => btn.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    show(state.photo + Number(btn.dataset.dir));
+    arm();
+  }));
+  document.querySelectorAll("[data-photo]").forEach((btn) => btn.addEventListener("click", () => {
+    show(Number(btn.dataset.photo));
+    arm();
+  }));
+  arm();
+}
+
+function renderWho() {
+  const who = document.getElementById("who");
+  const home = document.getElementById("home");
+  home.onclick = () => { if (state.family) goTab("overview"); };
+  if (!state.family) {
+    who.innerHTML = `<span class="who-name">Elige una familia</span>`;
+    return;
+  }
+  const p = party();
+  const listed = [...HOTELS].sort((a, b) => (a.rank || 99) - (b.rank || 99));
+  const ranked = listed.filter((h) => h.rank);
+  const rest = listed.filter((h) => !h.rank);
+  const item = (h) => `<button type="button" data-go="${h.id}" class="${state.tab === h.id ? "on" : ""}">${h.tab || h.name.replace("Grand Fiesta Americana ", "")}<em>${h.tier}</em></button>`;
+  who.innerHTML = `<span class="who-name">${p.names} · ${p.from}</span>
+    <span class="who-tools">
+      <button class="switch" id="switch" type="button">Cambiar familia</button>
+      <span class="more">
+        <button class="switch" id="hotels-btn" type="button" aria-expanded="${state.menu}">Todos los hoteles</button>
+        <div class="menu ${state.menu ? "open" : ""}" id="hotel-menu">
+          <button type="button" data-go="overview" class="${state.tab === "overview" ? "on" : ""}">Ranking</button>
+          <div class="sep"></div>
+          ${ranked.map(item).join("")}
+          <div class="sep"></div>
+          ${rest.map(item).join("")}
+        </div>
+      </span>
+    </span>`;
+  document.getElementById("switch").addEventListener("click", () => {
+    state.family = null;
+    state.menu = false;
+    sessionStorage.removeItem("cancun-family");
+    render();
+  });
+  document.getElementById("hotels-btn").addEventListener("click", (event) => {
+    event.stopPropagation();
+    state.menu = !state.menu;
+    document.getElementById("hotel-menu").classList.toggle("open", state.menu);
+    document.getElementById("hotels-btn").setAttribute("aria-expanded", String(state.menu));
+  });
+  document.querySelectorAll("#hotel-menu [data-go]").forEach((btn) => btn.addEventListener("click", () => goTab(btn.dataset.go)));
+  document.onclick = (event) => {
+    if (!event.target.closest(".more")) {
+      state.menu = false;
+      const menu = document.getElementById("hotel-menu");
+      if (menu) menu.classList.remove("open");
+    }
+  };
+}
+function renderGate() {
+  document.getElementById("view").innerHTML = `<section class="gate">${["juarez", "dfw"].map((id) => {
+    const f = FAMILIES[id];
+    return `<button type="button" data-family="${id}"><span class="shot" style="background-image:url('${f.shot}')"></span><div class="copy"><em>${f.size}</em><h1>${f.names}</h1><p>${f.from}<br>${f.airline}<br>${f.kidsLabel}</p></div></button>`;
+  }).join("")}</section>`;
+  document.querySelectorAll("[data-family]").forEach((btn) => btn.addEventListener("click", () => {
+    state.family = btn.dataset.family;
+    sessionStorage.setItem("cancun-family", state.family);
+    state.tab = "overview";
+    render();
+  }));
+  document.getElementById("foot").innerHTML = "";
+}
+function render() {
+  renderWho();
+  clearInterval(timer);
+  if (!state.family || !FAMILIES[state.family]) {
+    state.family = null;
+    renderGate();
+    return;
+  }
+  if (state.tab === "overview") renderOverview();
+  else if (byId[state.tab]) renderHotel(byId[state.tab]);
+  else { state.tab = "overview"; renderOverview(); }
+  const p = party();
+  document.getElementById("foot").innerHTML = `Para ${p.names}, ${p.size.toLowerCase()}. ${p.kidsDetail} Lindo y Maya reciben bebés: Star Camp Kangaroo es de 0 a 3 años, con un adulto. Iberostar Selection Coral Cancún y JOIA son solo para adultos. Grand Fiesta Americana Coral Beach no acepta menores de 5 años. Ninguno de esos tres está en la lista. Sin precio de vuelo. Septiembre es temporada de huracanes.`;
+}
+render();
+</script>
+</body>
+</html>
