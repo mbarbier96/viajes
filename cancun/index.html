@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cancún · Viajes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: hsl(230 33% 98%);
+    --ink: hsl(222 47% 11%);
+    --muted: hsl(220 9% 46%);
+    --line: hsl(220 13% 91%);
+    --card: #ffffff;
+    --brand: hsl(237 87% 59%);
+    --shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 8px 24px rgba(16, 24, 40, 0.06);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; color: var(--ink); background: var(--bg);
+    font-family: Geist, Inter, sans-serif; line-height: 1.5;
+  }
+  main { width: min(720px, calc(100% - 48px)); margin: 48px auto 64px; }
+  .back { color: var(--brand); font-size: 14px; font-weight: 600; text-decoration: none; }
+  h1 { font-size: 40px; letter-spacing: -0.03em; margin: 16px 0 8px; font-weight: 600; }
+  p { color: var(--muted); margin: 0 0 24px; }
+  .list { display: grid; gap: 12px; }
+  a.year {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 20px 22px; box-shadow: var(--shadow);
+  }
+  a.year strong { display: block; font-size: 22px; letter-spacing: -0.02em; }
+  a.year span { color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <a class="back" href="../">Viajes</a>
+  <h1>Cancún</h1>
+  <p>Elige el año.</p>
+  <div class="list">
+    <a class="year" href="2027/">
+      <strong>2027</strong>
+      <span>Verano · hoteles en familia</span>
+    </a>
+  </div>
+</main>
+</body>
+</html>

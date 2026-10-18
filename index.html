@@ -25,25 +25,26 @@
   main { width: min(720px, calc(100% - 48px)); margin: 48px auto 64px; }
   h1 { font-size: 40px; letter-spacing: -0.03em; margin: 0 0 8px; font-weight: 600; }
   p { color: var(--muted); margin: 0 0 24px; }
+  .list { display: grid; gap: 12px; }
   a.trip {
     display: block; text-decoration: none; color: inherit;
     background: var(--card); border: 1px solid var(--line); border-radius: 16px;
     padding: 20px 22px; box-shadow: var(--shadow);
   }
-  a.trip em { display: block; font-style: normal; color: var(--brand); font-size: 13px; font-weight: 600; }
-  a.trip strong { display: block; font-size: 22px; letter-spacing: -0.02em; margin-top: 4px; }
+  a.trip strong { display: block; font-size: 22px; letter-spacing: -0.02em; }
   a.trip span { color: var(--muted); }
 </style>
 </head>
 <body>
 <main>
   <h1>Viajes</h1>
-  <p>Cada viaje tiene su propia carpeta.</p>
-  <a class="trip" href="cancun/2027/">
-    <em>Verano 2027</em>
-    <strong>Cancún</strong>
-    <span>Hoteles en familia</span>
-  </a>
+  <p>Elige un destino.</p>
+  <div class="list">
+    <a class="trip" href="cancun/">
+      <strong>Cancún</strong>
+      <span>Hoteles en familia</span>
+    </a>
+  </div>
 </main>
 </body>
 </html>
